@@ -10,14 +10,14 @@ int main(int argc, char *argv[]){
 
     printf("Start :\n");
     //Read train and test data.
-    ArrayOfLabel train_labels = read_label("/home/nemanja/Téléchargements/CNN/mnist/train-labels-idx1-ubyte");
-    ArrayOfImage train_images = read_image("/home/nemanja/Téléchargements/CNN/mnist/train-images-idx3-ubyte");
-    ArrayOfLabel test_labels = read_label("/home/nemanja/Téléchargements/CNN/mnist/t10k-labels-idx1-ubyte");
-    ArrayOfImage test_images = read_image("/home/nemanja/Téléchargements/CNN/mnist/t10k-images-idx3-ubyte");
+    ArrayOfLabel train_labels = read_label("./mnist/train-labels-idx1-ubyte");
+    ArrayOfImage train_images = read_image("./mnist/train-images-idx3-ubyte");
+    ArrayOfLabel test_labels = read_label("./mnist/t10k-labels-idx1-ubyte");
+    ArrayOfImage test_images = read_image("./mnist/t10k-images-idx3-ubyte");
     printf("Read all data finished\n");
 
-    const char *cnn_arch_path = "/home/nemanja/Téléchargements/CNN/cnn_structure.txt";
-    const char *cnn_layer_path = "/home/nemanja/Téléchargements/CNN/cnn_layer.txt";
+    const char *cnn_arch_path = "./cnn_structure.txt";
+    const char *cnn_layer_path = "./cnn_layer.txt";
 
     //Input of network
     MatriceSize input_size = {test_images->image[0].width, test_images->image[0].hight};
