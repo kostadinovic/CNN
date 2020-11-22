@@ -756,6 +756,22 @@ float testCNN(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, i
     return (float)error/(float)test_num;
 }
 
+//function to test CNN with test data and the number of misclassified
+float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int *tab){
+    int error=0;
+    for(int n=0; n<test_num; n++){
+        printf("----- Testing image : %d/%d\n",n,test_num);
+        forward_propagation(network, input_data->image[n].data);
+
+        if(maxIndex(network->FC5->y,network->FC5->output_neuron) != maxIndex(output_data->label[n].data, network->FC5->output_neuron)){
+            error++;
+            tab[maxIndex(output_data->label[n].data, network->FC5->output_neuron)]++;
+        }
+        //clearCNN(network);
+    }
+    return (float)error/(float)test_num;
+}
+
 //save CNN network architecture in file
 void saveCNN(CNN *network, const char *path){
     FILE *file=NULL;

@@ -23,7 +23,6 @@ int reverse_int(int integer){
     return ((int)bits_0_7 << 24) + ((int)bits_8_15 << 16) + ((int)bits_16_23 << 8) + bits_24_31;
 }
 
-
 ArrayOfImage read_image(const char* filename){
 
     FILE  *file_point = NULL;
@@ -115,7 +114,6 @@ ArrayOfLabel read_label(const char* filename){
     fclose(file_point);
     return labarr;
 }
-
 
 void TestMnist(int number){
     ArrayOfImage train_images = read_image("/Users/nemanja/CLionProjects/apprentissageCNN/mnist/train-images-idx3-ubyte");

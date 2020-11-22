@@ -101,6 +101,7 @@ ConvLayer *CreateConvLayer(int input_width, int input_height, int filter_size, i
 
 
 float testCNN(CNN* cnn, ArrayOfImage input_data, ArrayOfLabel output_data,int test_num);
+float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int *tab);
 void importCNN(CNN *network, const char* path);
 void saveCNN(CNN* cnn, const char* filename);
 

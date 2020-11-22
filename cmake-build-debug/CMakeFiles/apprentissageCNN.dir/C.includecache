@@ -6,53 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/nemanja/CLionProjects/apprentissageCNN/conv_nn.c
-conv_nn.h
-/Users/nemanja/CLionProjects/apprentissageCNN/conv_nn.h
-stdio.h
--
-math.h
--
-time.h
--
-stdlib.h
--
+/Users/nemanja/CLionProjects/apprentissageCNN/matrice.c
 matrice.h
 /Users/nemanja/CLionProjects/apprentissageCNN/matrice.h
-
-/Users/nemanja/CLionProjects/apprentissageCNN/conv_nn.h
-matrice.h
-/Users/nemanja/CLionProjects/apprentissageCNN/matrice.h
-load_mnist.h
-/Users/nemanja/CLionProjects/apprentissageCNN/load_mnist.h
-stdbool.h
--
-
-/Users/nemanja/CLionProjects/apprentissageCNN/load_mnist.c
-load_mnist.h
-/Users/nemanja/CLionProjects/apprentissageCNN/load_mnist.h
-stdio.h
--
 stdlib.h
 -
-string.h
--
-assert.h
--
-
-/Users/nemanja/CLionProjects/apprentissageCNN/load_mnist.h
-
-/Users/nemanja/CLionProjects/apprentissageCNN/main.c
 stdio.h
 -
-time.h
--
-stdlib.h
--
-conv_nn.h
-/Users/nemanja/CLionProjects/apprentissageCNN/conv_nn.h
-load_mnist.h
-/Users/nemanja/CLionProjects/apprentissageCNN/load_mnist.h
 
 /Users/nemanja/CLionProjects/apprentissageCNN/matrice.h
 

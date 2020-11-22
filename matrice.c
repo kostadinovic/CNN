@@ -264,9 +264,6 @@ float **MatCorrelation(float **filter, MatriceSize filter_size, float **input, M
 
 
 
-
-
-
 /*
 
 
