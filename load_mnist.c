@@ -116,7 +116,7 @@ ArrayOfLabel read_label(const char* filename){
 }
 
 void TestMnist(int number){
-    ArrayOfImage train_images = read_image("/Users/nemanja/CLionProjects/apprentissageCNN/mnist/train-images-idx3-ubyte");
+    ArrayOfImage train_images = read_image("./mnist/train-images-idx3-ubyte");
     for(int j=0; j<number; j++){
         for (int i=0; i<784; i++) {
             printf("%1.1f ", train_images->image->data[j][i]);

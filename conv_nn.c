@@ -262,7 +262,7 @@ void forward_propagation(CNN *network, float **input){
 
     for(int i=0; i<(network->C3->output_channels); i++){
         for(int j=0; j<(network->C3->input_channels); j++){
-            float** mapout = MatConv(network->C3->filter_data[j][i], filter_size, network->P2->y[j], input_size, VALID);
+            float **mapout = MatConv(network->C3->filter_data[j][i], filter_size, network->P2->y[j], input_size, VALID);
             sumMatrix(network->C3->v[i], network->C3->v[i], output_size, mapout, output_size);
 
             for(int r=0; r<output_size.rows; r++){
@@ -486,7 +486,7 @@ void trainCNN(CNN *network,	ArrayOfImage input_data, ArrayOfLabel output_data,tr
         printf("[T][R][A][I][N][I][N][G]...    %d/%d \n",ep,hyper_params.nbEpochs);
         int n;
         for(n=0;n<train_number;n++){
-            printf("Learning image :  %d / %d\n",n,train_number);
+            printf("Learning image :  %d / %d\n",n+1,train_number);
 
             forward_propagation(network,input_data->image[n].data);
             //printf_cnn(network);
@@ -757,17 +757,24 @@ float testCNN(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, i
 }
 
 //function to test CNN with test data and the number of misclassified
-float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int *tab){
+float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int mis_class[10], int count[10]){
     int error=0;
     for(int n=0; n<test_num; n++){
-        printf("----- Testing image : %d/%d\n",n,test_num);
+        printf("----- Testing image : %d/%d\n",n+1,test_num);
         forward_propagation(network, input_data->image[n].data);
+
+        printf("LABEL=%d\n",maxIndex(output_data->label[n].data, network->FC5->output_neuron));
+        printf("LABEL PREDICTED=%d\n",maxIndex(network->FC5->y,network->FC5->output_neuron));
 
         if(maxIndex(network->FC5->y,network->FC5->output_neuron) != maxIndex(output_data->label[n].data, network->FC5->output_neuron)){
             error++;
-            tab[maxIndex(output_data->label[n].data, network->FC5->output_neuron)]++;
+            mis_class[maxIndex(output_data->label[n].data, network->FC5->output_neuron)] = mis_class[maxIndex(output_data->label[n].data, network->FC5->output_neuron)]+1;
+            printf("----------------------------------- !ERROR IN PREDICTION!\n");
         }
-        //clearCNN(network);
+        count[maxIndex(output_data->label[n].data, network->FC5->output_neuron)]=count[maxIndex(output_data->label[n].data, network->FC5->output_neuron)]+1;
+
+        clearCNN(network);
+        printf("\n");
     }
     return (float)error/(float)test_num;
 }

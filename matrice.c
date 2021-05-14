@@ -10,8 +10,8 @@
 
 // rotate input matrice 180°
 float **MatriceRotation180(float **matrice, MatriceSize size_matrice){
-    int column = 0;
-    int row = 0;
+    int column;
+    int row;
     int outSizeWeight = size_matrice.columns;
     int outSizeHeight = size_matrice.rows;
     float **output = (float**)(malloc(outSizeHeight*sizeof(float*)));
@@ -78,8 +78,8 @@ float **UpSamplingMatrice(float **matrice, MatriceSize size, int upc, int upr){
 
 //sum of two matrix
 void sumMatrix(float **sum, float **mat1, MatriceSize mat_size1, float **mat2, MatriceSize mat_size2){
-    int i=0;
-    int j=0;
+    int i;
+    int j;
 
     if(mat_size1.columns!=mat_size2.columns || mat_size1.rows!=mat_size2.rows){
         printf("ERROR: Size is not same!");
@@ -94,8 +94,8 @@ void sumMatrix(float **sum, float **mat1, MatriceSize mat_size1, float **mat2, M
 
 //multiplication of two matrix
 void MatMultiScaler(float **mult, float **matrice, MatriceSize mat_size, float scaler){
-    int i=0;
-    int j=0;
+    int i;
+    int j;
 
     for(i=0; i<mat_size.rows; i++){
         for(j=0;j<mat_size.columns;j++){
@@ -107,9 +107,9 @@ void MatMultiScaler(float **mult, float **matrice, MatriceSize mat_size, float s
 
 //sum of the matrice
 float sumMat(float **mat,MatriceSize mat_size){
-    int i=0;
-    int j=0;
-    float sum=0.0;
+    int i;
+    int j;
+    float sum=0;
 
     for(i=0; i<mat_size.rows; i++){
         for(j=0; j<mat_size.columns; j++){
@@ -120,7 +120,7 @@ float sumMat(float **mat,MatriceSize mat_size){
 }
 
 
-//print the matrice for debug!!
+/* print the matrice for debug!!
 void print_matrice(float **mat,MatriceSize mat_size){
     printf(("\n"));
     for(int i=0; i<mat_size.rows; i++){
@@ -133,12 +133,13 @@ void print_matrice(float **mat,MatriceSize mat_size){
     }
     printf(("\n"));
 }
+ */
 
 
 
 float **expandMatriceEdge(float **matrice, MatriceSize size_matrice, int ad_columns, int ad_rows){
-    int i=0;
-    int j=0;
+    int i;
+    int j;
 
     int column= size_matrice.columns;
     int row = size_matrice.rows;
@@ -264,20 +265,7 @@ float **MatCorrelation(float **filter, MatriceSize filter_size, float **input, M
 
 
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*  DEBUG MATRIX
 
 void test_matrice(){
     int i,j;
@@ -331,6 +319,5 @@ void test_matrice(){
     print_matrice(mSM,filter_size);
     
 }
-
  */
 

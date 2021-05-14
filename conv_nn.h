@@ -15,19 +15,18 @@
 #define AVG_POOLING 2
 
 typedef struct ConvolutionalLayer{
-    int input_width; //largeur de l'image en entrée
-    int input_height; //longueur de l'image en entrée
-    int filter_size; //la taille du filtre (n*n)
+    int input_width;
+    int input_height;
+    int filter_size;
 
-    int input_channels; //nombre de channels (RGB=3) en entrée
-    int output_channels; //nombre de channels (RGB=3) en sortie
+    int input_channels;
+    int output_channels;
 
-    float ****filter_data; //poids du filtre, tableau de dimension 4 (input_channels*output_channels*filter_size*filter_size)
-    float ****dfilter_data; //dérivé, poids mise à jour par le gradiant
+    float ****filter_data; //input_channels*output_channels*filter_size*filter_size
+    float ****dfilter_data; //derivation
 
-    float *bias; //le biais sa taille est celle de output_channels
-    bool is_fully_connected; //si la couche est entièrement connectée
-    bool *connect_model;
+    float *bias; //size of output_channels
+    bool is_fully_connected;
 
     float ***v; //valeur en entrée de la fonction d'activation (taille de la dimension de sortie)
     float ***y; //valeur en sortie du neurone après la fonction d'activation (taille de la dimension de sortie)
@@ -66,24 +65,24 @@ typedef struct FullyConnectedLayer{
 
 //l'architecture CNN (LeNet-5) de Yann LeCun
 typedef struct ConvolutionalNeuralNetwork{
-    int number_of_layer; //nombre de couches
+    int number_of_layer; //number of layers
     ConvLayer *C1;
     PoolLayer *P2;
     ConvLayer *C3;
     PoolLayer *P4;
     FCLayer *FC5;
 
-    float *error; //erreur lors du train
-    float *loss; //erreur actuel LOSS
+    float *error; //train error
+    float *loss; //actual loss
 }CNN;
 
 //train option
 typedef struct training_hyperparam {
     int nbEpochs;
-    float alpha; //valeur d'apprentissage
+    float alpha; //alpha learn parameter
 }training_hyperparam;
 
-void network_weight(float *input, float *output, float **weight, float *bias, MatriceSize network_size);
+
 int maxIndex(float *m, int m_size);
 void trainCNN(CNN *network,	ArrayOfImage input_data, ArrayOfLabel output_data,training_hyperparam hyper_params, int train_number);
 void UpdateWeightNetwork(CNN *network, training_hyperparam hyper_params, float **input);
@@ -101,7 +100,7 @@ ConvLayer *CreateConvLayer(int input_width, int input_height, int filter_size, i
 
 
 float testCNN(CNN* cnn, ArrayOfImage input_data, ArrayOfLabel output_data,int test_num);
-float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int *tab);
+float testCNN2(CNN *network, ArrayOfImage input_data, ArrayOfLabel output_data, int test_num, int tab[10],int count[10]);
 void importCNN(CNN *network, const char* path);
 void saveCNN(CNN* cnn, const char* filename);
 

@@ -1,7 +1,7 @@
 all: main
 
 main: main.o conv_nn.o matrice.o load_mnist.o
-		gcc -o main main.o conv_nn.o matrice.o load_mnist.o  
+		gcc -o main main.o conv_nn.o matrice.o load_mnist.o -lm
 
 main.o: main.c conv_nn.h
 		gcc -c main.c -Wall -O2 -std=c99 
